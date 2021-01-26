@@ -13,7 +13,7 @@ and open the template in the editor.
         <?php
         include './models/connect.php';
 
-        $db = new connect();
+        
         
         
         ?>

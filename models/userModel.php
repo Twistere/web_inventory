@@ -49,8 +49,6 @@ class UserModel {
         $stmt->execute();
     }
     
-    
-    
 
     function read() {
         $listeUsers = array();
@@ -68,6 +66,25 @@ class UserModel {
     public function delete($idUser) {
         $sql = "DELETE FROM user WHERE idUser=$idUser";
         $this->db->query($sql);
+    }
+
+    public function userExist($email, $password)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM user WHERE email=:email AND password=:password");
+        $stmt->bindValue(":email", $email);
+        $stmt->bindValue(":password", $password);
+        $stmt->execute();
+
+        $user = $stmt->fetch();
+
+        if (empty($user)) {
+            echo "Mot de passe ou login incorrecte";
+        }  else {
+            session_start();
+            $_SESSION["id"] = $user["id"];
+            echo "Vous êtes connecté";
+            // Deconnexion : unset($_SESSION);
+        }
     }
 
 }

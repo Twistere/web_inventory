@@ -18,16 +18,16 @@ $cm=new CategorieModel();
 
 
 // recuperer l'action
-$action=filter_input(INPUT_GET, 'action');
+$action = filter_input(INPUT_GET, 'action');
 
-if($action=="clicajout"){
+if($action == "clicajout"){
   // formulaire d'ajout
     include("../views/editerCategorie.php");  
     exit();
 }
 
 
-if($action=="supprimer"){
+if($action == "supprimer"){
 
     // recup id
     $idCategorie=filter_input(INPUT_GET, 'idCategorie');

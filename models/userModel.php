@@ -31,15 +31,21 @@ class UserModel {
        
         $user->setLastName($row["lastName"]);
         $user->setFirstName($row["firstName"]);
+        $user->setEmail($row["email"]);
+        $user->setPassword($row["password"]);
+        $user->setUserName($row["userName"]);
         return $user;
     }
 
     
     
     public function create($user) {
-        $stmt = $this->db->prepare("INSERT INTO user(firstName,lastName) VALUES(:firstName,:lastName)");
-        $stmt->bindParam(':firstName', $user->getFirstName());
-        $stmt->bindParam(':lastName', $user->getLastName());
+        $stmt = $this->db->prepare("INSERT INTO user(firstName,lastName, email, password, userName) VALUES(:firstName,:lastName,:email,:password,:userName)");
+        $stmt->bindValue(':firstName', $user->getFirstName());
+        $stmt->bindValue(':lastName', $user->getLastName());
+        $stmt->bindValue(':email', $user->getEmail());
+        $stmt->bindValue(':password', $user->getPassword());
+        $stmt->bindValue(':userName', $user->getuserName());
         $stmt->execute();
     }
     
@@ -58,11 +64,6 @@ class UserModel {
         return $listeUsers;
     }
 
-    
-    
-    
-    
-    
     
     public function delete($idUser) {
         $sql = "DELETE FROM user WHERE idUser=$idUser";

@@ -9,8 +9,6 @@
 include_once '../models/UserModel.php';
 
 
-
-// instance du modele
 $um=new UserModel();
 
 //mon backing bean
@@ -55,6 +53,9 @@ if($action=="validateAdd"){
     
     $firstName=filter_input(INPUT_POST, 'firstName');
     $lastName=filter_input(INPUT_POST, 'lastName');
+    $email=filter_input(INPUT_POST, 'email');
+    $password=filter_input(INPUT_POST, 'password');
+    $userName=filter_input(INPUT_POST, 'userName');
 
 
     if($firstName==""){
@@ -63,9 +64,12 @@ if($action=="validateAdd"){
     
     
     // verification des saisies 
-    $user=new User();
+    $user = new User();
     $user->setFirstName($firstName);
     $user->setLastName($lastName);
+    $user->setEmail($email);
+    $user->setPassword($password);
+    $user->setUserName($userName);
 
 
     // appel du modele
@@ -114,8 +118,3 @@ if($action=="supprimer"){
 
 
 */
-
-
-
-
-

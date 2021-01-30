@@ -11,11 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        include './models/connect.php';
-
-        
-        
-        
+        include './models/connexion.php';
         ?>
     </body>
 </html>
